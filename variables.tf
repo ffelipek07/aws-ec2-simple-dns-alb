@@ -28,10 +28,10 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
-variable "instance_key_name" {
+variable "key_name" {
   type        = string
   description = ""
-  default     = "fkuss_key"
+  default     = "access_user_key"
 }
 
 variable "domain" {

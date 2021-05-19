@@ -22,10 +22,6 @@ output "route_table_assossiation_ids" {
   value = [for k, v in aws_route_table_association.this : v.id]
 }
 
-output "sg_web_id" {
-  value = aws_security_group.web.id
-}
-
 output "sg_alb_id" {
   value = aws_security_group.alb.id
 }
@@ -33,3 +29,4 @@ output "sg_alb_id" {
 output "alb_id" {
   value = aws_lb.this.id
 }
+

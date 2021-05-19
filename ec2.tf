@@ -13,7 +13,7 @@ resource "aws_launch_template" "this" {
   name_prefix   = "terraform-"
   image_id      = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
-  key_name      = var.instance_key_name
+  key_name      = var.key_name
   user_data     = filebase64("ec2_setup.sh")
 
   monitoring {
@@ -61,15 +61,4 @@ resource "aws_autoscaling_policy" "scaledown" {
   cooldown               = "180"
   policy_type            = "SimpleScaling"
 
-}
-
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
-
-  vpc_security_group_ids = [aws_security_group.web.id]
-  subnet_id              = aws_subnet.this["pub_a"].id
-  availability_zone      = "${var.aws_region}a"
-
-  tags = merge(local.common_tags, { Name = "web Machine" })
 }
