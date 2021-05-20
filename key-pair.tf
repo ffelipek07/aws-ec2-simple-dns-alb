@@ -1,9 +1,9 @@
 resource "tls_private_key" "ec2_private_key" {
-algorithm = "RSA"
-rsa_bits  = 4096
+  algorithm = "RSA"
+  rsa_bits  = 4096
 }
 module "key_pair" {
-source = "terraform-aws-modules/key-pair/aws"
-key_name   = "access_user_key"
-public_key = tls_private_key.ec2_private_key.public_key_openssh
+  source     = "terraform-aws-modules/key-pair/aws"
+  key_name   = "access_user_key"
+  public_key = tls_private_key.ec2_private_key.public_key_openssh
 }
